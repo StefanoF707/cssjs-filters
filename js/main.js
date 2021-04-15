@@ -35,9 +35,7 @@ window.addEventListener('load', () =>  {
          name: 'Hue-rotate',
          defaultValue: 0
       },
-   ]
-
-
+   ];
 
    document.querySelector('input[type=file]').addEventListener('change', function() {
 
@@ -51,11 +49,13 @@ window.addEventListener('load', () =>  {
 
       if (imgLoaded) {
          filterList.forEach( (element) => {
-            document.getElementById('filters-list').innerHTML += `
+            document.getElementById('filters-list').innerHTML += 
+            `
                <li>
                   <h3 class="filter-name">
                      ${element.name}
                   </h3>
+                  <input type="number" value="${element.defaultValue}">
                </li>
             `
          });
