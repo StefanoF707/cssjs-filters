@@ -3,3 +3,59 @@
    padding: 0;
    box-sizing: border-box;
 }
+
+ul {
+   list-style: none;
+}
+
+.wrapper {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   height: 100vh;
+   background: #111111;
+}
+
+.wrapper-top {
+   width: 400px;
+   background: #fff;
+   padding: 10px;
+   border: 3px solid #acacac;
+   border-radius: 15px;
+   overflow: hidden;
+   cursor: pointer;
+}
+
+.wrapper-top > img {
+   max-width: 100%;
+   transition: all .8s;
+}
+
+.wrapper-top:hover > img {
+   transform: scale(1.05);
+}
+
+.wrapper-bottom {
+   margin-top: 50px;
+   width: 100%;
+   padding: 0 60px;
+}
+
+.wrapper-bottom > ul {
+   display: flex;
+   width: 100%;
+   justify-content: space-between;
+   margin: 0 auto;
+}
+
+.wrapper-bottom > ul > li {
+   text-align: center;
+   color: #fff;
+}
+
+.wrapper-bottom > ul > li > h3 {
+   margin-bottom: 15px;
+   cursor: pointer;
+}
+
