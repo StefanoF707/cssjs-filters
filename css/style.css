@@ -72,9 +72,3 @@ ul {
    margin-bottom: 15px;
    cursor: pointer;
 }
-
-.wrapper-bottom > ul > li > input[type="number"] {
-   display: inline-block;
-   max-width: 50px;
-}
-
