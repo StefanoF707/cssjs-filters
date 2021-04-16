@@ -8,48 +8,56 @@ window.addEventListener('load', () =>  {
          minValue: 0,
          maxValue: 100,
          open: false,
+         unit: '%',
       },
       {
          name: 'saturate',
          minValue: 0,
          maxValue: 100,
          open: false,
+         unit: '%',
       },
       {
          name: 'sepia',
          minValue: 0,
          maxValue: 100,
          open: false,
+         unit: '%',
       },
       {
          name: 'invert',
          minValue: 0,
          maxValue: 100,
          open: false,
+         unit: '%',
       },
       {
          name: 'contrast',
          minValue: 0,
          maxValue: 100,
          open: false,
+         unit: '%',
       },
       {
          name: 'brightness',
          minValue: 0,
          maxValue: 100,
          open: false,
+         unit: '%',
       },
       {
          name: 'blur',
          minValue: 0,
-         maxValue: 100,
+         maxValue: 10,
          open: false,
+         unit: 'px',
       },
       {
          name: 'hue-rotate',
          minValue: 0,
          maxValue: 360,
          open: false,
+         unit: 'deg',
       },
    ];
 
@@ -64,19 +72,14 @@ window.addEventListener('load', () =>  {
       imgLoaded = true;
       
       if (imgLoaded) {
-         createListElements(filterList, 'filters-list');
+         createListElements(filterList, 'filters-list', img);
       }
-
-      
    });
    
    
 });
 
-
-// FUNCTIONS----------------------------------
-
-function createListElements(array, list) {
+function createListElements(array, list, img) {
    array.forEach( (element) => {
 
       let node = document.createElement('LI');
@@ -88,9 +91,9 @@ function createListElements(array, list) {
 
       let inputNode = document.createElement('INPUT');
       inputNode.type = 'range';
-      inputNode.value = 0;
       inputNode.min = element.minValue;
       inputNode.max = element.maxValue;
+      inputNode.value = 0;
       inputNode.classList.add('input-range');
       inputNode.style.display = 'none'
 
@@ -100,8 +103,9 @@ function createListElements(array, list) {
 
       document.getElementById(list).appendChild(node);
 
+      
       titleNode.addEventListener('click', function() {
-
+         
          let allInputs = document.getElementsByClassName('input-range');
 
          for (let i = 0; i < allInputs.length; i++) {
@@ -117,6 +121,10 @@ function createListElements(array, list) {
             element.open = false;
          }
 
+      });
+
+      inputNode.addEventListener('change', function() {
+         img.style.filter = element.name + '(' + inputNode.value + element.unit + ')';
       });
    });
 }
