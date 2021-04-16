@@ -70,5 +70,13 @@ ul {
 
 .wrapper-bottom > ul > li > h3 {
    margin-bottom: 15px;
+   text-transform: capitalize;
    cursor: pointer;
+}
+
+.wrapper-bottom > ul > li > input {
+   cursor: grab;
+}
+.wrapper-bottom > ul > li > input:active {
+   cursor: grabbing;
 }

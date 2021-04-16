@@ -4,43 +4,51 @@ window.addEventListener('load', () =>  {
 
    const filterList = [
       {
-         name: 'Grayscale',
-         defaultValue: 0,
+         name: 'grayscale',
+         minValue: 0,
+         maxValue: 100,
          open: false,
       },
       {
-         name: 'Saturate',
-         defaultValue: 0,
+         name: 'saturate',
+         minValue: 0,
+         maxValue: 100,
          open: false,
       },
       {
-         name: 'Sepia',
-         defaultValue: 0,
+         name: 'sepia',
+         minValue: 0,
+         maxValue: 100,
          open: false,
       },
       {
-         name: 'Invert',
-         defaultValue: 0,
+         name: 'invert',
+         minValue: 0,
+         maxValue: 100,
          open: false,
       },
       {
-         name: 'Contrast',
-         defaultValue: 0,
+         name: 'contrast',
+         minValue: 0,
+         maxValue: 100,
          open: false,
       },
       {
-         name: 'Brightness',
-         defaultValue: 0,
+         name: 'brightness',
+         minValue: 0,
+         maxValue: 100,
          open: false,
       },
       {
-         name: 'Blur',
-         defaultValue: 0,
+         name: 'blur',
+         minValue: 0,
+         maxValue: 100,
          open: false,
       },
       {
-         name: 'Hue-rotate',
-         defaultValue: 0,
+         name: 'hue-rotate',
+         minValue: 0,
+         maxValue: 360,
          open: false,
       },
    ];
@@ -54,28 +62,61 @@ window.addEventListener('load', () =>  {
       img.classList.remove("preview-img");
 
       imgLoaded = true;
-
+      
       if (imgLoaded) {
-         createListElements(filterList);
+         createListElements(filterList, 'filters-list');
       }
-   });
 
+      
+   });
+   
    
 });
 
 
 // FUNCTIONS----------------------------------
 
-function createListElements(array) {
+function createListElements(array, list) {
    array.forEach( (element) => {
-      document.getElementById('filters-list').innerHTML += 
-      `
-         <li>
-            <h3 class="filter-name">
-               ${element.name}
-            </h3>
-            <input type="range" value="${element.defaultValue}">
-         </li>
-      `
+
+      let node = document.createElement('LI');
+
+      let titleNode = document.createElement('H3');
+      let titleText = document.createTextNode(element.name);
+      titleNode.classList.add('filter-name');
+      titleNode.appendChild(titleText);
+
+      let inputNode = document.createElement('INPUT');
+      inputNode.type = 'range';
+      inputNode.value = 0;
+      inputNode.min = element.minValue;
+      inputNode.max = element.maxValue;
+      inputNode.classList.add('input-range');
+      inputNode.style.display = 'none'
+
+
+      node.appendChild(titleNode);
+      node.appendChild(inputNode);
+
+      document.getElementById(list).appendChild(node);
+
+      titleNode.addEventListener('click', function() {
+
+         let allInputs = document.getElementsByClassName('input-range');
+
+         for (let i = 0; i < allInputs.length; i++) {
+            allInputs[i].style.display = 'none';
+            array[i].open = false;
+         }
+
+         if (!element.open) {
+            inputNode.style.display = 'block';
+            element.open = true;
+         } else {
+            inputNode.style.display = 'none';
+            element.open = false;
+         }
+
+      });
    });
 }
